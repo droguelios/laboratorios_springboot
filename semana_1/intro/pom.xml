@@ -29,6 +29,42 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+
+    <!-- ====================================================================== -->
+    <!-- GESTIÓN CENTRALIZADA DE DEPENDENCIAS (PARCHES DE SEGURIDAD)            -->
+    <!-- ====================================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Enforce strict Spring Boot baseline to prevent transitive hijacking -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.5.14</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Fix for StreamReadConstraints vulnerability in Jackson 3.x -->
+            <dependency>
+                <groupId>tools.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>3.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>tools.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>3.1.1</version>
+            </dependency>
+
+            <!-- Fix for Uncontrolled Recursion vulnerability -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.18.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,6 +87,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.8.17</version>
+            <scope>compile</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
