@@ -1,0 +1,34 @@
+# IDE / editor
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Build outputs
+target/
+build/
+out/
+
+# Local databases and generated runtime files
+data/*.mv.db
+data/*.trace.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+application-local.properties
+application-*.local.properties
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+# OS files
+.DS_Store
+Thumbs.db
