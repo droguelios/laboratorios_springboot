@@ -1,5 +1,6 @@
 package com.riwi.intro.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,15 @@ class LibroUIController {
     }
 
     @PostMapping("/guardar")
-    public String guardarLibro(@ModelAttribute("libro")Libros libros){
+    public String guardarLibro(@ModelAttribute("libro") Libros libros, Model model){
+        int anioActual = LocalDate.now().getYear();
+
+        if (libros.getAnioPublicacion() > anioActual) {
+            model.addAttribute("errorAnio", "El año de publicacion no puede ser mayor al año actual (" + anioActual + ").");
+            model.addAttribute("tituloPantalla", "Registrar Nuevo Libro (Correccion)");
+            return "formulario";
+        }
+
         libroService.saveLibro(libros);
         return "redirect:/admin/libros";
     }

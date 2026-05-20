@@ -5,16 +5,25 @@
     <meta charset="UTF-8">
     <title th:text="${tituloPantalla}">Formulario</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
+        body { font-family: Arial, sans-serif; margin: 0; }
+        main { margin: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
         input { padding: 8px; width: 300px; }
         button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
         .btn-cancel { background-color: #f44336; text-decoration: none; display: inline-block; padding: 10px 15px; color: white; }
+        .error-message { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
+<div th:replace="~{layout/componentes :: navbar}"></div>
+
+<main>
 <h1 th:text="${tituloPantalla}">Nuevo Libro</h1>
+
+<div th:if="${errorAnio}" class="error-message">
+    <strong th:text="${errorAnio}">Mensaje de error generico</strong>
+</div>
 
 <!-- El formulario se vincula al objeto 'libro' enviado desde el controlador -->
 <form th:action="@{/admin/libros/guardar}" th:object="${libro}" method="post">
@@ -45,6 +54,9 @@
     <a th:href="@{/admin/libros}" class="btn-cancel">Cancelar</a>
 
 </form>
+</main>
+
+<div th:replace="~{layout/componentes :: footer}"></div>
 
 </body>
 </html>

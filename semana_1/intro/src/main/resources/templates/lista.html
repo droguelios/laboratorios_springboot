@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; }
+        main { margin: 20px; }
+    </style>
 </head>
 <body>
+<div th:replace="~{layout/componentes :: navbar}"></div>
+
+<main>
 <h1 th:text="${tituloPantalla}">Lista de Libros</h1>
 
 <!-- Agregue esta línea debajo del H1 -->
 <div style="margin-bottom: 20px;">
     <a th:href="@{/admin/libros/nuevo}" style="padding: 10px; background-color: #008CBA; color: white; text-decoration: none;">+ Agregar Nuevo Libro</a>
 </div>
+</main>
+
+<div th:replace="~{layout/componentes :: footer}"></div>
 
 </body>
 </html>
